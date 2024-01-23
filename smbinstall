@@ -1,0 +1,36 @@
+#!/bin/bash
+
+# Instalação do Samba
+sudo dnf install -y samba
+
+# Configuração do compartilhamento
+sudo tee -a /etc/samba/smb.conf > /dev/null <<EOL
+
+[Documentos]
+   comment = pasta compartilhada
+   path = /home/andre/Documentos
+   valid users = andre
+   read only = no
+   browsable = yes
+   writable - yes
+   guest ok = no
+   create mask = 0765
+EOL
+
+# Adição do usuário ao grupo Samba
+sudo usermod -aG smbusers andre
+
+# Configuração da senha do usuário no Samba
+sudo smbpasswd -a andre
+
+# Habilitação da inicialização automática do serviço Samba
+sudo systemctl enable smb
+
+# Reinicialização do serviço Samba
+sudo systemctl restart smb.service
+sudo systemctl restart nmb.service
+
+# Abertura de portas no firewall (se estiver ativado)
+sudo firewall-cmd --permanent --add-service=samba
+sudo firewall-cmd --permanent --zone=public --add-service=samba
+sudo firewall-cmd --reload
