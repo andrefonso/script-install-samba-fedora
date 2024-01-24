@@ -10,7 +10,7 @@
 4) Alterar o proprietário e o grupo do arquivo **smbinstall** para o do usuário usando os seguintes comandos:</br>
    ```
    sudo chown andre smbinstall
-   sudo chown :andre smbinsall
+   sudo chown :andre smbinstall
    ```
 5) Para que o script seja executável a partir de qualquer local, seguir os procedimentos abaixo:</br>
    -  Editar o arquivo _.bashrc_ usando o comando abaixo:</br>
