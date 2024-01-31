@@ -1,36 +1,35 @@
 #!/bin/bash
 
-# Instalação do Samba
+# Instalação e ativação do Samba
 sudo dnf install -y samba
+sudo systemctl enable smb --now
+firewall-cmd --get-active-zones
+sudo firewall-cmd --permanent --zone=FedoraWorkstation --add-service=samba
+sudo firewall-cmd --reload
+
+# Configuração da senha do usuário no Samba
+sudo smbpasswd -a andre
+
+# Comandos para compartilhar a pasta Documentos na minha home
+sudo semanage fcontext --add --type "samba_share_t" "/home/andre/Documentos(/.*)?"
+sudo restorecon -R ~/Documentos
 
 # Configuração do compartilhamento
 sudo tee -a /etc/samba/smb.conf > /dev/null <<EOL
 
 [Documentos]
-   comment = pasta compartilhada
-   path = /home/andre/Documentos
-   valid users = andre
-   read only = no
-   browsable = yes
-   writable = yes
-   guest ok = no
-   create mask = 0765
+comment = pasta compartilhada
+path = /home/andre/Documentos
+valid users = andre
+read only = no
+browseable = yes
+writeable = yes
+guest ok = no
+create mask = 0765
+directory mask = 0755
+write list = user
+
 EOL
 
-# Adição do usuário ao grupo Samba
-sudo usermod -aG smbusers andre
-
-# Configuração da senha do usuário no Samba
-sudo smbpasswd -a andre
-
-# Habilitação da inicialização automática do serviço Samba
-sudo systemctl enable smb
-
 # Reinicialização do serviço Samba
-sudo systemctl restart smb.service
-sudo systemctl restart nmb.service
-
-# Abertura de portas no firewall (se estiver ativado)
-sudo firewall-cmd --permanent --add-service=samba
-sudo firewall-cmd --permanent --zone=public --add-service=samba
-sudo firewall-cmd --reload
+sudo systemctl restart smb nmb
