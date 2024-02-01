@@ -1,4 +1,4 @@
-### Procedimentos para baixa/execução de Script de instalação/configuração do Samba e de compartilhamento de arquivos no Fedora
+### Procedimentos para execução de Script de instalação/configuração do Samba e de compartilhamento de arquivos no Fedora
 ---
 
 1) Criar o diretório **myscripts** na _home_ executando o seguinte comando:</br>
