@@ -3,7 +3,7 @@
 
 1) Criar o diretório **myscripts** na _home_ executando o seguinte comando:</br>
   `mkdir /home/andre/myscripts`
-2) Dentro do diretório _myscripts_ crie com o _Nano_ um arquivo com o nome **smbinstall** copiando para dentro dele o conteúdo do arquivo _smbinstall_ disponível neste repositório.</br>
+2) Dentro do diretório _myscripts_ crie com o _Nano_ um arquivo de script com o nome **smbinstall** copiando para dentro dele o conteúdo do arquivo _smbinstall_ disponível neste repositório.</br>
 
 3) Dar permissões de execução ao script antes de executá-lo usando o seguinte comando:</br>
   `sudo chmod +x smbinstall` </br>
