@@ -3,10 +3,10 @@
 
 1) Criar o diretório **myscripts** na _home_ executando o seguinte comando:</br>
   `mkdir /home/andre/myscripts`
-2) Baixar o arquivo contendo o script de instalação chamado _smbinstall_ e salvá-lo no diretório que foi criado</br>
+2) Dentro do diretório _myscripts_ crie com o _Nano_ um arquivo com o nome **smbinstall** copiando para dentro dele o conteúdo do arquivo _smbinstall_ disponível neste repositório.</br>
 
 3) Dar permissões de execução ao script antes de executá-lo usando o seguinte comando:</br>
-  `chmod +x smbinstall` </br>
+  `sudo chmod +x smbinstall` </br>
 4) Alterar o proprietário e o grupo do arquivo **smbinstall** para o do usuário usando os seguintes comandos:</br>
    ```
    sudo chown andre smbinstall
@@ -23,4 +23,4 @@
   
 6) O último passo é a execução do Script que fará a instalação do Samba e as configurações necessárias para compartilhamento de arquivos.
    Para isso utilize o seguinte comando:</br>
-   `smbinstall`
+   `sudo smbinstall`
